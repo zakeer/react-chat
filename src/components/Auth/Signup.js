@@ -30,7 +30,7 @@ export class Signup extends Component {
     render() {
         const { email, password } = this.state;
         return (
-            <div>
+            <div className="min-h-screen bg-blue-100">
                 <h1>Signup</h1>
                 <form onSubmit={this.handleSignup}>
                     <input
