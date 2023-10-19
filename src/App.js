@@ -1,18 +1,13 @@
-import './App.css';
-import Login from './components/Auth/Login';
-import Signup from './components/Auth/Signup';
-import Layout from './components/Layout';
+import "./App.css";
+import Header from "./components/Layout/Header";
+import AppRouter from "./services/Router";
 
 function App() {
   return (
-    <Layout>
-      React Chat App
-      <Signup />
-
-      <hr />
-
-      <Login />
-    </Layout>
+    <main>
+      <Header />
+      <AppRouter />
+    </main>
   );
 }
 
