@@ -1,5 +1,5 @@
 import React from "react";
-import PageLinks from "../../services/PageLinks";
+import PageLinks from "../common/PageLink";
 
 var Header = () => {
   return (

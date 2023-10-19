@@ -10,7 +10,12 @@ function Login() {
     async (e) => {
       e.preventDefault();
       if (email && password) {
-        await signInWithEmailAndPassword(getAuth(firebaseApp), email, password);
+        try {
+            await signInWithEmailAndPassword(getAuth(firebaseApp), email, password);
+        } catch (error) {
+            console.log("SINGIN ERROR", error.message);
+        }
+        
       }
     },
     [email, password]

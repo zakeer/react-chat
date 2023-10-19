@@ -1,7 +1,8 @@
 import { Switch, Route } from "react-router-dom";
-import Home from "../components/Layout/Home";
-import Signup from "../components/Auth/Signup";
-import Login from "../components/Auth/Login";
+import Home from "./Layout/Home";
+import Signup from "./Auth/Signup";
+import Login from "./Auth/Login";
+import ChatRoom from "./Chat/ChatRoom";
 
 var AppRouter = () => {
   return (
@@ -10,6 +11,7 @@ var AppRouter = () => {
         <Route exact path="/" component={Home} />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
+        <Route path="/chat-room" component={ChatRoom} />
       </Switch>
     </div>
   );
