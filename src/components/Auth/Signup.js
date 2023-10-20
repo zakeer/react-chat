@@ -40,6 +40,7 @@ export class Signup extends Component {
   };
 
   render() {
+    console.log(":: SIGNUP PROPS ::", this.props)
     const { email, password, error } = this.state;
     return (
       <div className="flex justify-center mt-16">
@@ -69,4 +70,4 @@ export class Signup extends Component {
   }
 }
 
-export default withRouter(Signup);
+export default withRouter(Signup); // HOC -> withRouter(Signup)
