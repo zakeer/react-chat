@@ -31,17 +31,9 @@ export class Signup extends Component {
       this.setState({ error: error.message });
     };
 
-    /*
-    if (email && password) {
-      await createUserWithEmailAndPassword(
-        getAuth(firebaseApp),
-        email,
-        password
-      );
-    }
+   
   };
-  */
-
+  
   onEmailChange = (e) => {
     this.setState({ email: e.target.value });
   };
@@ -80,7 +72,7 @@ export default Signup;
 function isValidEmail(email) {
   const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
   const email = "example@email.com";
-  if (isValidEmail(email)) {
+  if (emailRegex(email)) {
     console.log("Email is valid");
   } else {
     console.log("Email is not valid");
