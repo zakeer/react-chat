@@ -8,12 +8,30 @@ export class Signup extends Component {
     this.state = {
       email: "",
       password: "",
+      error: null,
     };
   }
 
   handleSignup = async (e) => {
     e.preventDefault();
     const { email, password } = this.state;
+    try {
+      if (!email || !password) {
+        throw new Error("Please provide a valid email and password.");
+      }
+      if (!isValidEmail(email)) {
+        throw new Error("Invalid email format.");
+      }
+      if (password.length < 6) {
+        throw new Error("Password must be at least 6 characters.");
+      }
+      await createUserWithEmailAndPassword(getAuth(firebaseApp), email, password);
+      this.setState({ error: null });
+    } catch (error) {
+      this.setState({ error: error.message });
+    };
+
+    /*
     if (email && password) {
       await createUserWithEmailAndPassword(
         getAuth(firebaseApp),
@@ -22,17 +40,19 @@ export class Signup extends Component {
       );
     }
   };
+  */
 
   onEmailChange = (e) => {
     this.setState({ email: e.target.value });
   };
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, error } = this.state;
     return (
       <div className="flex justify-center mt-16">
         <form onSubmit={this.handleSignup} className="w-96 flex flex-col gap-8">
           <h1 className="text-slate-900 text-3xl">Signup</h1>
+          {error && <div classname="text-red-500">{error}</div>}
           <input
             onChange={this.onEmailChange}
             value={email}
@@ -55,5 +75,17 @@ export class Signup extends Component {
     );
   }
 }
-
 export default Signup;
+
+function isValidEmail(email) {
+  const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+  const email = "example@email.com";
+  if (isValidEmail(email)) {
+    console.log("Email is valid");
+  } else {
+    console.log("Email is not valid");
+  }
+  
+  return emailRegex.test(email);
+  
+}
