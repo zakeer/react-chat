@@ -21,7 +21,7 @@ var Home = () => {
           className="w-40 rounded p-2 bg-slate-900 text-white ml-24 mt-4 hover:bg-slate-800"
           onClick={HandleOnCLick}
         >
-          Get Start
+          Get Started
         </button>
       </section>
     </div>
