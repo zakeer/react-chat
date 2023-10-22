@@ -15,6 +15,17 @@ export class Signup extends Component {
 
   handleSignup = async (e) => {
     e.preventDefault();
+
+  var FIREBASE_AUTH_ERRORS = {
+    "auth/wrong-password": `Invalid email/password`,
+    "auth/user-not-found": `No user found for provided email`,
+    "auth/email-already-in-use": "Email already register, do please login",
+    "auth/invalid-email": "Please Provide Valid Email",
+    "auth/invalid-login-credentials" : "Invalid Login Attempt/Please do signup",
+    "auth/missing-password" : "Please Provide Your Password",
+    "auth/weak-password"  : "Password should be at least 6 characters"
+  };
+
     const { email, password } = this.state;
     if (email && password) {
       try {
@@ -26,7 +37,7 @@ export class Signup extends Component {
         this.props.history.push("/chat-room");
       } catch (e) {
         console.log(e.message);
-        this.setState({ error: 'Email already in use' })
+        this.setState({ error: FIREBASE_AUTH_ERRORS[e.code] })
       }
     }
     else {
@@ -46,6 +57,7 @@ export class Signup extends Component {
       <div className="flex justify-center mt-16">
         <form onSubmit={this.handleSignup} className="w-96 flex flex-col gap-8">
           <h1 className="text-slate-900 text-3xl">Signup</h1>
+          {error && <p style={{ color: 'red' }}> {error} </p>}
           <input
             onChange={this.onEmailChange}
             value={email}
@@ -60,7 +72,6 @@ export class Signup extends Component {
             placeholder="Please provide password"
             className="w-full p-2 pl-4 border-b-2 border-slate-900 focus:outline-none"
           />
-          {error && <p style={{ color: 'red' }}> {error} </p>}
           <button className="w-full p-2 bg-slate-700 text-white rounded hover:bg-slate-900 mt-4 transition">
             Signup
           </button>
