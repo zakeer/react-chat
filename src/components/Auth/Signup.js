@@ -75,6 +75,7 @@ export class Signup extends Component {
           <button className="w-full p-2 bg-slate-700 text-white rounded hover:bg-slate-900 mt-4 transition">
             Signup
           </button>
+          <p className="text-sm text-slate-900 ml-10">If You Have An Existing Account, Please Do Login</p>
         </form>
       </div>
     );

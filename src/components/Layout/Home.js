@@ -1,11 +1,21 @@
 import { useHistory } from "react-router-dom";
 import "../../App.css";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
 
 var Home = () => {
+  const { user } = useContext(AuthContext);
   var history = useHistory();
+
   var HandleOnCLick = () => {
-    history.push("/chat-room");
+       if(user){
+        history.push("/chat-room");
+       } else {
+        history.push("/signup")
+       }
+    
   };
+ 
 
   return (
     <div className="HomePageUI">
