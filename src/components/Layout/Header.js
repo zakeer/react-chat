@@ -3,6 +3,7 @@ import PageLinks from "../common/PageLink";
 import { AuthContext } from "../../contexts/AuthContext";
 import { getAuth, signOut } from "firebase/auth"
 import firebaseApp from "../../services/firebase";
+import Room from "./Room";
 
 var Header = () => {
   const { user } = useContext(AuthContext);
@@ -21,6 +22,7 @@ var Header = () => {
       <nav className="flex gap-4">
         <PageLinks to="/">Home</PageLinks>
         {user ? <>
+          <Room />
           <PageLinks to="/" onClick={logout}>Logout</PageLinks>
         </> : <>
           <PageLinks to="/login">Login</PageLinks>
