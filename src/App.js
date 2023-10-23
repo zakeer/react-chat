@@ -3,14 +3,17 @@ import Header from "./components/Layout/Header";
 import AppRouter from "./components/Navigation/Router";
 
 import { AuthProvider } from "./contexts/AuthContext";
+import { RoomProvider } from "./contexts/RoomContext";
 
 function App() {
   return (
     <AuthProvider>
-      <main>
-        <Header />
-        <AppRouter />
-      </main>
+      <RoomProvider>
+        <main>
+          <Header />
+          <AppRouter />
+        </main>
+      </RoomProvider>
     </AuthProvider>
   );
 }

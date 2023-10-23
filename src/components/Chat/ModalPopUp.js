@@ -1,8 +1,12 @@
 import { Button, Input, Modal } from "antd";
 import { useEffect, useState } from "react";
 import PageLink from "../Navigation/PageLink";
+import { useAuth } from "../../contexts/AuthContext";
+import { useRooms } from "../../contexts/RoomContext";
 
 var ModalPopUp = () => {
+  const { user = {} } = useAuth();
+  const { addNewRoom } = useRooms();
   const [isModalOpen, setIsModalOpen] = useState(null);
   const [roomName, setRoomName] = useState("");
   const [error, setError] = useState(false);
@@ -15,11 +19,18 @@ var ModalPopUp = () => {
     setError(false);
   };
 
-  const HandleOk = () => {
+  const handleOk = () => {
     if (roomName) {
       setError(null);
       setRoomName("");
       setIsModalOpen(false);
+
+      const newRoom = {
+        users: [],
+        name: roomName,
+        owner: user.uid
+      };
+      addNewRoom(newRoom);
     } else {
       setError(true);
     }
@@ -74,7 +85,7 @@ var ModalPopUp = () => {
             type="primary"
             htmlType="submit"
             className="bg-blue-500 w-24"
-            onClick={HandleOk}
+            onClick={handleOk}
           >
             Ok
           </Button>
