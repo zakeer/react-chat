@@ -70,4 +70,4 @@ export class Signup extends Component {
   }
 }
 
-export default withRouter(Signup); // HOC -> withRouter(Signup)
+export default Signup;
