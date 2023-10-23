@@ -49,7 +49,7 @@ function Login() {
           className="w-full p-2 pl-4 border-b-2 border-slate-900 focus:outline-none"
           placeholder="Please provide password"
         />
-        {error && <p className="bg-red-500 text-white rounded"> {error} </p>}
+        {error && <p className="text-[#fc0303] font-medium"> {error} </p>}
         <button className="w-full p-2 bg-slate-700 text-white rounded hover:bg-slate-900 mt-4 transition">
           Login
         </button>
