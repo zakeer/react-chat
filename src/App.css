@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .HomepageUi{
   background-image: url( https://png.pngtree.com/thumb_back/fw800/background/20230705/pngtree-illustration-of-3d-vector-concept-for-online-social-networking-chatting-and-image_3731419.jpg);
   max-width: 100vw;
@@ -5,4 +6,23 @@
   display: flex;
 
  
+=======
+.HomePageUI{
+  background-image: url(https://img.freepik.com/premium-vector/social-networks-dating-apps-vector-seamless-pattern_341076-469.jpg);
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+ 
+.HomePageSection{
+  background-color: white;
+  width:31.25em;
+  padding: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 4em;
+  padding: 4em;
+  border-radius: 6.25em;
+>>>>>>> refs/remotes/origin/main
 }

@@ -3,6 +3,8 @@ import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
+import { getFirestore  } from 'firebase/firestore'
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyAP1oOiy8dSN_ON50yL1_wtPrcpXkGQhDY",
@@ -15,5 +17,8 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
+
+// FireStore DB
+export const firebaseDB = getFirestore(firebaseApp);
 
 export default firebaseApp;

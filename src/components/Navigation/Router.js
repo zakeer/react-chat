@@ -1,8 +1,10 @@
 import { Switch, Route } from "react-router-dom";
-import Home from "./Layout/Home";
-import Signup from "./Auth/Signup";
-import Login from "./Auth/Login";
-import ChatRoom from "./Chat/ChatRoom";
+import Home from "../Layout/Home";
+import Signup from "../Auth/Signup";
+import Login from "../Auth/Login";
+import ChatRoom from "../Chat/ChatRoom";
+
+
 
 var AppRouter = () => {
   return (
