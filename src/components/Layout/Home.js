@@ -1,5 +1,5 @@
 var Home = () => {
-    return <div>Home</div>;
+    return <div className="HomepageUi">Home</div>;
   };
   
   export default Home;

@@ -9,6 +9,7 @@ function App() {
     <main>
       <Header />
       <AppRouter />
+      <Modal/>
     </main>
   );
 }
