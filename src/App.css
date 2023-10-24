@@ -16,3 +16,26 @@
   padding: 4em;
   border-radius: 100px;
 }
+
+.ChatRoomLi{
+  background: skyblue;
+  color: yellow;
+  font-size: x-large;
+  margin: 6px;
+  text-align: center;
+  border-radius: 25px;
+  position: relative;
+  font-family: 'Dancing Script', cursive;
+}
+
+.ChatRoomLi::before {
+  content: "🙂";
+  position: absolute;
+  left: -5px;
+
+}
+
+.ChatRoomLi:hover{
+  background-color:purple;
+  transform: scale(1.1);
+}
