@@ -1,13 +1,14 @@
 import React, { createContext, useState, useEffect, useContext } from 'react'
-import { collection, getDocs, addDoc } from 'firebase/firestore'
+import { collection, getDocs, addDoc, updateDoc, doc } from 'firebase/firestore'
 import { firebaseDB } from '../services/firebase';
+import { useAuth } from './AuthContext';
 
 export const RoomContext = createContext({});
 
 export function RoomProvider({ children }) {
-
     const [rooms, setRooms] = useState([]);
     const [selectedRoom, setSelectedRoom] = useState(null);
+    const { user } = useAuth();
 
     useEffect(() => {
         getRoomsList();
@@ -38,12 +39,31 @@ export function RoomProvider({ children }) {
         }
     }
 
+    const joinRoom = async (room) => {
+        console.log(room, user)
+        try {
+            await updateDoc(
+                doc(firebaseDB, 'rooms', room.id),
+                {
+                    users: [
+                        ...room.users,
+                        user.uid
+                    ]
+                }
+            )
+            getRoomsList();
+        } catch (error) {
+            console.log(":: updateDoc ERROR ::", error);
+        }
+    }
+
 
     return <RoomContext.Provider value={{
         rooms,
         selectedRoom,
         onRoomClick: setSelectedRoom,
-        addNewRoom
+        addNewRoom,
+        joinRoom
     }}>
         {children}
     </RoomContext.Provider>
