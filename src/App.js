@@ -7,10 +7,12 @@ import { RoomProvider } from "./contexts/RoomContext";
 function App() {
   return (
     <AuthProvider>
+      <RoomProvider>
       <main>
         <Header />
         <AppRouter />
       </main>
+      </RoomProvider>
     </AuthProvider>
   );
 }
