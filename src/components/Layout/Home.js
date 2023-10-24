@@ -5,9 +5,6 @@ import { AuthContext } from "../../contexts/AuthContext";
 import Button from "../Button";
 
 var Home = () => {
-<<<<<<< HEAD
-    return <div className="HomepageUi">Home</div>;
-=======
   const { user } = useContext(AuthContext);
   var history = useHistory();
 
@@ -18,7 +15,6 @@ var Home = () => {
       history.push("/signup")
     }
 
->>>>>>> refs/remotes/origin/main
   };
 
 
