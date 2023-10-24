@@ -8,11 +8,11 @@
  
 .HomePageSection{
   background-color: white;
-  width:500px;
-  padding: 16px;
+  width:31.25em;
+  padding: 1em;
   margin-left: auto;
   margin-right: auto;
   margin-top: 4em;
   padding: 4em;
-  border-radius: 100px;
+  border-radius: 6.25em;
 }

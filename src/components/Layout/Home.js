@@ -7,7 +7,7 @@ var Home = () => {
   const { user } = useContext(AuthContext);
   var history = useHistory();
 
-  var HandleOnCLick = () => {
+  var handleOnCLick = () => {
        if(user){
         history.push("/chat-room");
        } else {
@@ -29,7 +29,7 @@ var Home = () => {
         </p>
         <button
           className="w-40 rounded p-2 bg-slate-900 text-white ml-24 mt-4 hover:bg-slate-800"
-          onClick={HandleOnCLick}
+          onClick={handleOnCLick}
         >
           Get Started
         </button>

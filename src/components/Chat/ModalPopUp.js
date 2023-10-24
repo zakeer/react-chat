@@ -11,7 +11,7 @@ var ModalPopUp = () => {
   const [roomName, setRoomName] = useState("");
   const [error, setError] = useState(false);
 
-  const HandleOnChange = (event) => {
+  const handleOnChange = (event) => {
     var {
       target: { value },
     } = event;
@@ -36,11 +36,11 @@ var ModalPopUp = () => {
     }
   };
 
-  const HandleCancel = () => {
+  const handleCancel = () => {
     setIsModalOpen(false);
   };
 
-  const ShowModal = () => {
+  const showModal = () => {
     setIsModalOpen(true);
   };
 
@@ -51,13 +51,13 @@ var ModalPopUp = () => {
 
   return (
     <>
-      <PageLink to="/chat-room" onClick={ShowModal}>
+      <PageLink to="/chat-room" onClick={showModal}>
         CreateChatRoom
       </PageLink>
       <Modal
         open={isModalOpen}
         footer={null}
-        onCancel={HandleCancel}
+        onCancel={handleCancel}
         className="w-80"
       >
         <h1 className="text-center text-2xl text-blue-500">Create Room</h1>
@@ -73,12 +73,12 @@ var ModalPopUp = () => {
         <Input
           placeholder=" Room Name"
           className="w-96 ml-11 mt-4 pl-4"
-          onChange={HandleOnChange}
+          onChange={handleOnChange}
           value={roomName}
           allowClear
         />
         <section className="mt-12 flex justify-center gap-6">
-          <Button className="w-24" onClick={HandleCancel}>
+          <Button className="w-24" onClick={handleCancel}>
             Cancel
           </Button>
           <Button
