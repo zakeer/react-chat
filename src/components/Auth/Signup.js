@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import firebaseApp from "../../services/firebase";
 import { withRouter } from "react-router-dom";
+import FIREBASE_AUTH_ERRORS from "./AuthError";
+import PageLink from "../Navigation/PageLink";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 export class Signup extends Component {
   constructor(props) {
@@ -16,15 +19,6 @@ export class Signup extends Component {
   handleSignup = async (e) => {
     e.preventDefault();
 
-  var FIREBASE_AUTH_ERRORS = {
-    "auth/wrong-password": `Invalid email/password`,
-    "auth/user-not-found": `No user found for provided email`,
-    "auth/email-already-in-use": "Email already register, do please login",
-    "auth/invalid-email": "Please Provide Valid Email",
-    "auth/invalid-login-credentials" : "Invalid Login Attempt/Please do signup",
-    "auth/missing-password" : "Please Provide Your Password",
-    "auth/weak-password"  : "Password should be at least 6 characters"
-  };
 
     const { email, password } = this.state;
     if (email && password) {
@@ -75,7 +69,10 @@ export class Signup extends Component {
           <button className="w-full p-2 bg-slate-700 text-white rounded hover:bg-slate-900 mt-4 transition">
             Signup
           </button>
-          <p className="text-sm text-slate-900 ml-10">If You Have An Existing Account, Please Do Login</p>
+          <div className="flex gap-1">
+          <p className="text-sm text-slate-900 ml-10">If You Have An Existing Account, Please Do</p>
+          <Link to="/login" className="hover:text-slate-400 transition-colors text-sm underline">Login</Link>
+          </div>
         </form>
       </div>
     );

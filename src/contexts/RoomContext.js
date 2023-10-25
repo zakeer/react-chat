@@ -8,6 +8,7 @@ export const RoomContext = createContext({});
 export function RoomProvider({ children }) {
     const [rooms, setRooms] = useState([]);
     const [selectedRoom, setSelectedRoom] = useState(null);
+    const [loading, setLoading] = useState(true)
     const { user } = useAuth();
 
     useEffect(() => {
@@ -24,6 +25,7 @@ export function RoomProvider({ children }) {
                 roomsList.push(room)
             });
             setRooms(roomsList);
+            setLoading(false)
         } catch (e) {
             console.log(":: GET ROOMS ERROR ::", e);
         }
@@ -63,7 +65,8 @@ export function RoomProvider({ children }) {
         selectedRoom,
         onRoomClick: setSelectedRoom,
         addNewRoom,
-        joinRoom
+        joinRoom,
+        loading
     }}>
         {children}
     </RoomContext.Provider>
