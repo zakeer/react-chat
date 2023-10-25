@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import firebaseApp from "../../services/firebase";
 import { withRouter } from "react-router-dom";
+import FIREBASE_AUTH_ERRORS from "./AuthError";
 
 export class Signup extends Component {
   constructor(props) {
@@ -16,15 +17,6 @@ export class Signup extends Component {
   handleSignup = async (e) => {
     e.preventDefault();
 
-  var FIREBASE_AUTH_ERRORS = {
-    "auth/wrong-password": `Invalid email/password`,
-    "auth/user-not-found": `No user found for provided email`,
-    "auth/email-already-in-use": "Email already register, do please login",
-    "auth/invalid-email": "Please Provide Valid Email",
-    "auth/invalid-login-credentials" : "Invalid Login Attempt/Please do signup",
-    "auth/missing-password" : "Please Provide Your Password",
-    "auth/weak-password"  : "Password should be at least 6 characters"
-  };
 
     const { email, password } = this.state;
     if (email && password) {
