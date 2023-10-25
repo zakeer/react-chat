@@ -3,6 +3,8 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import firebaseApp from "../../services/firebase";
 import { withRouter } from "react-router-dom";
 import FIREBASE_AUTH_ERRORS from "./AuthError";
+import PageLink from "../Navigation/PageLink";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 export class Signup extends Component {
   constructor(props) {
@@ -67,7 +69,10 @@ export class Signup extends Component {
           <button className="w-full p-2 bg-slate-700 text-white rounded hover:bg-slate-900 mt-4 transition">
             Signup
           </button>
-          <p className="text-sm text-slate-900 ml-10">If You Have An Existing Account, Please Do Login</p>
+          <div className="flex gap-1">
+          <p className="text-sm text-slate-900 ml-10">If You Have An Existing Account, Please Do</p>
+          <Link to="/login" className="hover:text-slate-400 transition-colors text-sm underline">Login</Link>
+          </div>
         </form>
       </div>
     );
