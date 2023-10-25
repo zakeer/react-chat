@@ -3,7 +3,7 @@ import { useRooms } from '../../contexts/RoomContext';
 import Button from '../Button';
 
 function ChatView() {
-    const { selectedRoom, joinRoom } = useRooms();
+    const { selectedRoom, joinRoom, loading } = useRooms();
 
     return <section className='flex-1 bg-green-100 p-4'>
         {selectedRoom ? <RoomInvitation room={selectedRoom} onClick={() => joinRoom(selectedRoom)} /> : <NoRoomSelected />}
@@ -11,7 +11,9 @@ function ChatView() {
 }
 
 
-const NoRoomSelected = React.memo(() => <p>Please Select Room from the list</p>);
+const NoRoomSelected = React.memo(() => <p>
+    Please Select Room from the list
+</p>);
 
 const RoomInvitation = React.memo(({ room, onClick }) => {
     return <div>
