@@ -3,6 +3,7 @@ import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import firebaseApp from "../../services/firebase";
 import { useHistory } from "react-router-dom";
 import FIREBASE_AUTH_ERRORS from "./AuthError";
+import { Link } from "react-router-dom";
 
 
 function Login() {
@@ -57,6 +58,11 @@ function Login() {
         <button className="w-full p-2 bg-slate-700 text-white rounded hover:bg-slate-900 mt-4 transition">
           Login
         </button>
+        <div className="flex gap-1">
+          <p className="text-sm text-slate-900 ml-10">If You Don't Have An Existing Account, Please Do
+          <Link to="/signup" className="hover:text-slate-400 transition-colors text-sm underline"> Signup</Link>
+          </p>
+          </div>
       </form>
     </div>
   );

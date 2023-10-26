@@ -24,6 +24,8 @@ var Header = () => {
       <nav className="flex gap-4">
         <PageLinks to="/">Home</PageLinks>
         {user ? <>
+          <ModalPopUp />
+          <p>{user.email}</p>
           <PageLinks to="/" onClick={logout}>Logout</PageLinks>
         </> : <>
           <PageLinks to="/login">Login</PageLinks>

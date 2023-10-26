@@ -3,7 +3,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import firebaseApp from "../../services/firebase";
 import { withRouter } from "react-router-dom";
 import FIREBASE_AUTH_ERRORS from "./AuthError";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom";
 
 export class Signup extends Component {
   constructor(props) {

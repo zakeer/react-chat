@@ -12,7 +12,7 @@ var Home = () => {
     if (user) {
       history.push("/chat-room");
     } else {
-      history.push("/signup")
+      history.push("/login")
     }
 
   };
