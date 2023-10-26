@@ -7,7 +7,7 @@ import RoomList from './RoomList';
 var ChatRoom = () => {
   const { rooms = [], selectedRoom, onRoomClick } = useRooms();
   const { user = {} } = useAuth();
-  const { loading } = useRooms();
+
   console.log(":: CHAT ROOM ::", { rooms, selectedRoom })
   const {loading} = useRooms();
 
