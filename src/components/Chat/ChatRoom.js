@@ -22,7 +22,7 @@ var ChatRoom = () => {
   var HandleLoading = () => <p className='text-2xl flex justify-center mt-56'>Loading....</p>
 
   return <div className='flex h-full'>
-    <aside className='flex-2 w-64 bg-white border-r-2 border-slate-900 ui-chat-rooms'>
+    <aside className='flex-2 w-72 bg-white border-r-2 border-slate-900 ui-chat-rooms'>
       {loading ? <HandleLoading /> : <ul className>
         {roomsWithUser.map(room => <RoomList
           key={room.id}
