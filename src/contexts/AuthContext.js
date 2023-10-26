@@ -17,9 +17,21 @@ export function AuthProvider({ children }) {
             }
         )
         return unsubscribe;
-    }, [])
+    }, []);
 
-    return <AuthContext.Provider value={{ user: currentUser }}>
+    const addUser = async (user) => {
+        try {
+            const usersCollection = collection(firebaseDB, "userDetails");
+            await addDoc(usersCollection, {
+                uid: user?.uid,
+                email: user?.email
+            })
+        } catch (error) {
+            console.log(":: addNewRoom ERROR ::", error);
+        }
+    }
+
+    return <AuthContext.Provider value={{ user: currentUser, addUser }}>
         {children}
     </AuthContext.Provider>
 }

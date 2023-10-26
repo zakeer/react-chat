@@ -27,6 +27,7 @@ export class Signup extends Component {
           email,
           password,
         );
+        
         this.props.history.push("/chat-room");
       } catch (e) {
         console.log(e.message);
