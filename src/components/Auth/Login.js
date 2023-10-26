@@ -2,6 +2,7 @@ import React, { useCallback, useState } from "react";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import firebaseApp from "../../services/firebase";
 import { useHistory } from "react-router-dom";
+import FIREBASE_AUTH_ERRORS from "./AuthError";
 
 
 function Login() {
@@ -9,6 +10,8 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState('');
   const history = useHistory();
+  
+  
 
 
   const handleLogin = useCallback(
@@ -19,8 +22,8 @@ function Login() {
           await signInWithEmailAndPassword(getAuth(firebaseApp), email, password);
           history.push('/chat-room');
         } catch (error) {
-          console.log("SINGIN ERROR", error.message);
-          setError('Invalid email or password')
+          console.log("SINGIN ERROR", error.code);
+          setError(FIREBASE_AUTH_ERRORS[error.code])
         }
 
       }
@@ -28,13 +31,14 @@ function Login() {
         setError('Please enter email & password')
       }
     },
-    [email, password]
+    [email, password, history]
   );
 
   return (
     <div className="flex justify-center mt-16">
       <form onSubmit={handleLogin} className="w-96 flex flex-col gap-8">
         <h1 className="text-slate-900 text-3xl">Login</h1>
+        {error && <p className="text-red-600"> {error} </p>}
         <input
           onChange={(e) => setEmail(e.target.value)}
           value={email}

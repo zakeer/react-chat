@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import firebaseApp from "../../services/firebase";
-import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
+import { withRouter } from "react-router-dom";
+import FIREBASE_AUTH_ERRORS from "./AuthError";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 export class Signup extends Component {
   constructor(props) {
@@ -15,6 +17,8 @@ export class Signup extends Component {
 
   handleSignup = async (e) => {
     e.preventDefault();
+
+
     const { email, password } = this.state;
     if (email && password) {
       try {
@@ -26,7 +30,7 @@ export class Signup extends Component {
         this.props.history.push("/chat-room");
       } catch (e) {
         console.log(e.message);
-        this.setState({ error: 'Email already in use' })
+        this.setState({ error: FIREBASE_AUTH_ERRORS[e.code] })
       }
     }
     else {
@@ -46,6 +50,7 @@ export class Signup extends Component {
       <div className="flex justify-center mt-16">
         <form onSubmit={this.handleSignup} className="w-96 flex flex-col gap-8">
           <h1 className="text-slate-900 text-3xl">Signup</h1>
+          {error && <p style={{ color: 'red' }}> {error} </p>}
           <input
             onChange={this.onEmailChange}
             value={email}
@@ -64,6 +69,10 @@ export class Signup extends Component {
           <button className="w-full p-2 bg-slate-700 text-white rounded hover:bg-slate-900 mt-4 transition">
             Signup
           </button>
+          <div className="flex gap-1">
+          <p className="text-sm text-slate-900 ml-10">If You Have An Existing Account, Please Do</p>
+          <Link to="/login" className="hover:text-slate-400 transition-colors text-sm underline">Login</Link>
+          </div>
         </form>
       </div>
     );
