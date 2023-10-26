@@ -1,14 +1,13 @@
 import React from 'react';
 import { useRooms } from '../../contexts/RoomContext';
-import { UserOutlined } from '@ant-design/icons';
 import { useAuth } from '../../contexts/AuthContext';
 import ChatView from './ChatView';
-import Spinner from './Spinner';
-
+import RoomList from './RoomList';
 
 var ChatRoom = () => {
   const { rooms = [], selectedRoom, onRoomClick } = useRooms();
   const { user = {} } = useAuth();
+  const { loading } = useRooms();
   console.log(":: CHAT ROOM ::", { rooms, selectedRoom })
   const {loading} = useRooms();
 
@@ -24,10 +23,10 @@ var ChatRoom = () => {
   })
    var HandleLoading = () => <Spinner />
 
-  return <div className='flex h-screen'>
-    
-    <aside className='flex-2 w-64 bg-white border-r-2 border-slate-900'>
-      <ul className>
+  var HandleLoading = () => <p className='text-2xl flex justify-center mt-56'>Loading....</p>
+
+  return <div className='flex h-full'>
+    <aside className='flex-2 w-64 bg-white border-r-2 border-slate-900 ui-chat-rooms'>
       {loading ? <HandleLoading /> : <ul className>
         {roomsWithUser.map(room => <RoomList
           key={room.id}
@@ -35,15 +34,8 @@ var ChatRoom = () => {
           onClick={onRoomClick}
           isSelected={room.id === selectedRoom?.id}
         />)}
-        {/* 
-          isSelected={selectedRoom && room.id === selectedRoom.id}
-          isSelected={room.id === (selectedRoom || {}).id}
-          isSelected={room.id === selectedRoom?.id}
-        */}
-       </ul>
-       }   </ul>
-        <Spinner/>n
-       
+      </ul>}
+      
     </aside>
     <ChatView />
    
@@ -51,12 +43,5 @@ var ChatRoom = () => {
   </div>
 }
 
-const RoomList = React.memo(({ room, onClick, isSelected }) => <li
-  onClick={() => onClick(room)}
-  className={`${isSelected ? 'bg-green-200' : ''} p-2 w-full border-b border-slate-800 hover:bg-slate-100 cursor-pointer focus:bg-slate-200`}
->
-  <p>{room.name} {room.isOwner && <small className='px-3 text-sm bg-green-300 rounded text-green-800'>Owner</small>} </p>
-  <p className='text-sm ml-52'><UserOutlined />: {room.users.length}</p>
-</li>)
 
 export default ChatRoom;

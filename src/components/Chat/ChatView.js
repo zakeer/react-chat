@@ -1,27 +1,22 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useRooms } from '../../contexts/RoomContext';
-import Button from '../Button';
-import ChatRoomList from './ChatRoomList';
+import RoomInvitation from './RoomInvitation';
+import NoRoomSelected from './RoomSelection';
 
 function ChatView() {
     const { selectedRoom, joinRoom } = useRooms();
+    const { isOwner, isJoined } = selectedRoom || {};
 
-    return <section className='flex-1 bg-green-100 p-4'>
+    if(isOwner || isJoined) {
+        return "Display Message";
+    }
+
+
+    return <section className='flex-1 p-4'>
         {selectedRoom ? <RoomInvitation room={selectedRoom} onClick={() => joinRoom(selectedRoom)} /> : <NoRoomSelected />}
     </section>
 }
 
-
-const NoRoomSelected = React.memo(() => <p>Please Select Room from the list</p>);
-
-const RoomInvitation = React.memo(({ room, onClick }) => {
-    return <div>
-        {/* <pre>{JSON.stringify(room, null, 2)}</pre> */}
-        <p>Do you want to join <strong>{room.name}</strong>?</p>
-        {!room.isOwner && !room.isJoined && <Button onClick={onClick}>Join</Button>}
-        <ChatRoomList/>
-    </div>
-})
 
 export default React.memo(ChatView)
 
