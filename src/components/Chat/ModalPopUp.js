@@ -84,7 +84,7 @@ var ModalPopUp = () => {
           <Button
             type="primary"
             htmlType="submit"
-            className="bg-blue-500 w-24"
+            className="bg-blue-700 w-24"
             onClick={handleOk}
           >
             Ok

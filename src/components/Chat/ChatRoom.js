@@ -3,11 +3,14 @@ import { useRooms } from '../../contexts/RoomContext';
 import { UserOutlined } from '@ant-design/icons';
 import { useAuth } from '../../contexts/AuthContext';
 import ChatView from './ChatView';
+import Spinner from './Spinner';
+
 
 var ChatRoom = () => {
   const { rooms = [], selectedRoom, onRoomClick } = useRooms();
   const { user = {} } = useAuth();
   console.log(":: CHAT ROOM ::", { rooms, selectedRoom })
+  const {loading} = useRooms();
 
   const roomsWithUser = rooms.map(room => {
     console.log("CHecking for Owner", room.owner, user.uid, room.owner === user.uid)
@@ -17,10 +20,12 @@ var ChatRoom = () => {
       isJoined: (room.users || []).includes(user.uid)
     }
   })
+   var HandleLoading = () => <Spinner />
 
   return <div className='flex h-screen'>
     <aside className='flex-2 w-64 bg-white border-r-2 border-slate-900'>
       <ul className>
+      {loading ? <HandleLoading /> : <ul className>
         {roomsWithUser.map(room => <RoomList
           key={room.id}
           room={room}
@@ -32,9 +37,13 @@ var ChatRoom = () => {
           isSelected={room.id === (selectedRoom || {}).id}
           isSelected={room.id === selectedRoom?.id}
         */}
-      </ul>
+       </ul>
+       }   </ul>
+        <Spinner/>n
     </aside>
     <ChatView />
+  
+   
   </div>
 }
 

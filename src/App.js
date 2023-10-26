@@ -1,6 +1,6 @@
 import "./App.css";
 import Header from "./components/Layout/Header";
-import AppRouter from "./components/Router";
+import AppRouter from "./components/Navigation/Router";
 import { AuthProvider } from "./contexts/AuthContext";
 import { RoomProvider } from "./contexts/RoomContext";
 

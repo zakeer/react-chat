@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRooms } from '../../contexts/RoomContext';
 import Button from '../Button';
+import ChatRoomList from './ChatRoomList';
 
 function ChatView() {
     const { selectedRoom, joinRoom } = useRooms();
@@ -18,6 +19,7 @@ const RoomInvitation = React.memo(({ room, onClick }) => {
         {/* <pre>{JSON.stringify(room, null, 2)}</pre> */}
         <p>Do you want to join <strong>{room.name}</strong>?</p>
         {!room.isOwner && !room.isJoined && <Button onClick={onClick}>Join</Button>}
+        <ChatRoomList/>
     </div>
 })
 
