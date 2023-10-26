@@ -8,14 +8,12 @@ import ChatRoom from "../Chat/ChatRoom";
 
 var AppRouter = () => {
   return (
-    <div>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/signup" component={Signup} />
-        <Route path="/login" component={Login} />
-        <Route path="/chat-room" component={ChatRoom} />
-      </Switch>
-    </div>
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route path="/signup" component={Signup} />
+      <Route path="/login" component={Login} />
+      <Route path="/chat-room" component={ChatRoom} />
+    </Switch>
   );
 };
 

@@ -9,9 +9,11 @@ function App() {
   return (
     <AuthProvider>
       <RoomProvider>
-        <main>
+        <main className="ui-page">
           <Header />
-          <AppRouter />
+          <section className="ui-page-container">
+            <AppRouter />
+          </section>
         </main>
       </RoomProvider>
     </AuthProvider>

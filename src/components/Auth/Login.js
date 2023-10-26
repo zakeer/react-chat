@@ -31,7 +31,7 @@ function Login() {
         setError('Please enter email & password')
       }
     },
-    [email, password]
+    [email, password, history]
   );
 
   return (
