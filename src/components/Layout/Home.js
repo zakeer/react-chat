@@ -20,15 +20,15 @@ var Home = () => {
 
   return (
     <div className="HomePageUI">
-      <section className="HomePageSection">
-        <h1 className="text-center text-6xl text-slate-900 mb-6">Chit-Chat</h1>
-        <p className="text-center text-2xl text-slate-900">
+      <section className="HomePageSection text-center">
+        <h1 className=" text-6xl text-slate-900 mb-6">Chit-Chat</h1>
+        <p className=" text-2xl text-slate-900">
           Have Your Best Chat
         </p>
-        <p className="text-center text-lg text-slate-900">
+        <p className="text-lg text-slate-900 mb-4">
           Fast Easy And Unlimited Team Chat
         </p>
-        <Button onClick={handleOnCLick}>
+        <Button onClick={handleOnCLick} className="w-40">
           Get Started
         </Button>
       </section>
