@@ -58,9 +58,9 @@ var ModalPopUp = () => {
         open={isModalOpen}
         footer={null}
         onCancel={handleCancel}
-        className="w-80"
+        className="w-40"
       >
-        <h1 className="text-center text-2xl text-blue-500">Create Room</h1>
+        <h1 className="text-bottom text-2xl text-blue-500">Create Room</h1>
         {error ? (
           <p className="text-red-600 text-center mt-6 text-xl mb-2">
             Please Provide Room Name!
@@ -84,7 +84,7 @@ var ModalPopUp = () => {
           <Button
             type="primary"
             htmlType="submit"
-            className="bg-blue-700 w-24"
+            className="bg-sky-500 hover:bg-sky-700 "
             onClick={handleOk}
           >
             Ok
