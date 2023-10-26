@@ -16,6 +16,28 @@
   overflow-y: auto;
 }
 
+.ui-chat-messages{
+  display:flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.ui-chatview-header{
+   flex: 10%;
+   position: sticky;
+}
+
+.ui-chatview-section{
+    flex: 80%;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.ui-chatview-footer{
+    flex: 10%;
+    position: sticky;
+}
+
 
 .HomePageUI{
   background-image: url(https://img.freepik.com/premium-vector/social-networks-dating-apps-vector-seamless-pattern_341076-469.jpg);
