@@ -12,6 +12,8 @@ var ChatRoom = () => {
   console.log(":: CHAT ROOM ::", { rooms, selectedRoom })
   const {loading} = useRooms();
 
+ 
+
   const roomsWithUser = rooms.map(room => {
     console.log("CHecking for Owner", room.owner, user.uid, room.owner === user.uid)
     return {
@@ -23,6 +25,7 @@ var ChatRoom = () => {
    var HandleLoading = () => <Spinner />
 
   return <div className='flex h-screen'>
+    
     <aside className='flex-2 w-64 bg-white border-r-2 border-slate-900'>
       <ul className>
       {loading ? <HandleLoading /> : <ul className>
@@ -40,9 +43,10 @@ var ChatRoom = () => {
        </ul>
        }   </ul>
         <Spinner/>n
+       
     </aside>
     <ChatView />
-  
+   
    
   </div>
 }
