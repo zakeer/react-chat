@@ -3,6 +3,7 @@ import { useRooms } from '../../contexts/RoomContext';
 import { useAuth } from '../../contexts/AuthContext';
 import ChatView from './ChatView';
 import RoomList from './RoomList';
+import Spinner from './Spinner';
 
 var ChatRoom = () => {
   const { rooms = [], selectedRoom, onRoomClick } = useRooms();
