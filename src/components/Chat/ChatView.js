@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useRooms } from '../../contexts/RoomContext';
 import RoomInvitation from './RoomInvitation';
 import NoRoomSelected from './RoomSelection';

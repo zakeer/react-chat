@@ -15,7 +15,7 @@ var ChatRoom = () => {
     return {
       ...room,
       isOwner: room.owner === user.uid,
-      isJoined: (room.users || []).includes(user.uid)
+      isJoined: (room.users || []).includes(user.email)
     }
   })
 
