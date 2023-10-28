@@ -6,11 +6,11 @@ import { UserOutlined } from '@ant-design/icons';
 function ChatContainer() {
     const { selectedRoom } = useRooms();
     if (!selectedRoom) return null;
-    return <section className='ui-chat-container bg-blue-100 flex-1 flex flex-col'>
-        <header className='bg-blue-300 p-3 flex justify-between align-start'>
+    return <section className='ui-chat-container flex-1 flex flex-col'>
+        <header className='bg-slate-800 p-3 flex justify-between align-start text-white'>
             <h4>{selectedRoom?.name}</h4> 
             <div className='group relative'>
-                <span className='cursor-pointer'>
+                <span className='cursor-pointer text-white'>
                     <UserOutlined />
                 </span>
 
@@ -21,10 +21,10 @@ function ChatContainer() {
         </header>
         <div className='ui-chat-container-messages flex-1'>
         </div>
-        <footer className='bg-white p-3'>
-            <form className='flex'>
-                <input className='border rounded flex-1 py-1 px-2' />
-                <Button>Send</Button>
+        <footer className='bg-slate-800 p-3'>
+            <form className='flex gap-2'>
+                <input className='border rounded flex-1 py-1 pl-8 px-2 focus:outline-none' />
+                <Button className="w-24 hover:border">Send</Button>
             </form>
         </footer>
     </section>
