@@ -28,7 +28,7 @@ var ModalPopUp = () => {
       const newRoom = {
         users: [],
         name: roomName,
-        owner: user.uid
+        owner: user.uid,
       };
       addNewRoom(newRoom);
     } else {

@@ -16,17 +16,17 @@
   overflow-y: auto;
 }
 
-.HomePageUI{
+.HomePageUI {
   background-image: url(https://img.freepik.com/premium-vector/social-networks-dating-apps-vector-seamless-pattern_341076-469.jpg);
   width: 100vw;
   height: 90vh;
   display: flex;
   flex-direction: column;
 }
- 
-.HomePageSection{
+
+.HomePageSection {
   background-color: white;
-  width:31.25em;
+  width: 31.25em;
   padding: 1em;
   margin-left: auto;
   margin-right: auto;

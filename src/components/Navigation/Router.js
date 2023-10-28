@@ -4,8 +4,6 @@ import Signup from "../Auth/Signup";
 import Login from "../Auth/Login";
 import ChatRoom from "../Chat/ChatRoom";
 
-
-
 var AppRouter = () => {
   return (
     <Switch>
