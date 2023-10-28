@@ -49,7 +49,7 @@ export function RoomProvider({ children }) {
                 {
                     users: [
                         ...room.users,
-                        user.uid
+                        user.email
                     ]
                 }
             )
