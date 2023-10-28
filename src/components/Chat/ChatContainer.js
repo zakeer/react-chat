@@ -10,11 +10,11 @@ function ChatContainer() {
         <header className='bg-slate-800 p-3 flex justify-between align-start text-white'>
             <h4>{selectedRoom?.name}</h4> 
             <div className='group relative'>
-                <span className='cursor-pointer text-white'>
+                <span className='cursor-pointer text-white '>
                     <UserOutlined />
                 </span>
 
-                <div className='p-2 bg-white shadow-xl rounded absolute top-full right-0 hidden group-hover:block'>
+                <div className='p-2 shadow-xl rounded absolute top-full bg-slate-600 right-0 hidden group-hover:block'>
                     {selectedRoom?.users?.map(user => <div className='p-1 border-b'>{user}</div>)}
                 </div>
             </div>
