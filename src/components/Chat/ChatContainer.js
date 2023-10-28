@@ -20,6 +20,7 @@ function ChatContainer() {
         }
         console.log(":: onMessageSend ::", payload);
         addNewMessage(payload);
+        setMessage('');
     }
 
 
