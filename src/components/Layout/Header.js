@@ -1,21 +1,17 @@
 import React, { useContext } from "react";
 import PageLinks from "../Navigation/PageLink";
 import { AuthContext } from "../../contexts/AuthContext";
-import { getAuth, signOut } from "firebase/auth"
+import { getAuth, signOut } from "firebase/auth";
 import firebaseApp from "../../services/firebase";
 import ModalPopUp from "../Chat/ModalPopUp";
-
 
 var Header = () => {
   const { user } = useContext(AuthContext);
 
   const logout = () => {
-    signOut(
-      getAuth(firebaseApp)
-    )
-  }
-    
-       
+    signOut(getAuth(firebaseApp));
+  };
+
   return (
     <header className="bg-slate-900 flex justify-between gap-4 text-white p-4">
       <div>
@@ -23,15 +19,20 @@ var Header = () => {
       </div>
       <nav className="flex gap-4">
         <PageLinks to="/">Home</PageLinks>
-        {user ? <>
-        <ModalPopUp />
-          <p>{user.email}</p>
-          <PageLinks to="/" onClick={logout}>Logout</PageLinks>
-        </> : <>
-          <PageLinks to="/login">Login</PageLinks>
-          <PageLinks to="/signup">Signup</PageLinks>
-        </>}
-
+        {user ? (
+          <>
+            <ModalPopUp />
+            <p>{user.email}</p>
+            <PageLinks to="/" onClick={logout}>
+              Logout
+            </PageLinks>
+          </>
+        ) : (
+          <>
+            <PageLinks to="/login">Login</PageLinks>
+            <PageLinks to="/signup">Signup</PageLinks>
+          </>
+        )}
       </nav>
     </header>
   );

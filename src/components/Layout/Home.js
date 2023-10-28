@@ -12,19 +12,15 @@ var Home = () => {
     if (user) {
       history.push("/chat-room");
     } else {
-      history.push("/signup")
+      history.push("/login");
     }
-
   };
-
 
   return (
     <div className="HomePageUI">
       <section className="HomePageSection text-center">
         <h1 className=" text-6xl text-slate-900 mb-6">Chit-Chat</h1>
-        <p className=" text-2xl text-slate-900">
-          Have Your Best Chat
-        </p>
+        <p className=" text-2xl text-slate-900">Have Your Best Chat</p>
         <p className="text-lg text-slate-900 mb-4">
           Fast Easy And Unlimited Team Chat
         </p>
