@@ -1,7 +1,9 @@
 import React, { createContext, useState, useEffect, useContext } from 'react'
-import { collection, getDocs, addDoc, updateDoc, doc } from 'firebase/firestore'
+import { collection, getDocs, addDoc, updateDoc, doc, query, where } from 'firebase/firestore'
+
 import { firebaseDB } from '../services/firebase';
 import { useAuth } from './AuthContext';
+import { addOwnerPropsToRoom } from '../utils/roomUtils';
 
 export const RoomContext = createContext({});
 
@@ -10,10 +12,31 @@ export function RoomProvider({ children }) {
     const [selectedRoom, setSelectedRoom] = useState(null);
     const [loading, setLoading] = useState(true)
     const { user } = useAuth();
+    const [messages, setMessages] = useState([]);
 
     useEffect(() => {
         getRoomsList();
     }, []);
+
+    useEffect(() => {
+        if (selectedRoom) {
+            getRoomMessages();
+        }
+    }, [selectedRoom]);
+
+    const getRoomMessages = async () => {
+        const q = query(
+            collection(firebaseDB, "messages"),
+            where("room", "==", selectedRoom.id)
+        );
+        const querySnapshot = await getDocs(q);
+        const newMessages = []
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            newMessages.push(doc.data())
+        });
+        setMessages(newMessages);
+    }
 
     const getRoomsList = async () => {
         try {
@@ -22,10 +45,18 @@ export function RoomProvider({ children }) {
             const roomsList = [];
             query.forEach(result => {
                 const room = { ...result.data(), id: result.id }
+                room.users = (room.users || []).filter(user => user.includes('@'))
                 roomsList.push(room)
             });
             setRooms(roomsList);
-            setLoading(false)
+            setLoading(false);
+
+            const alreadySelectedRoom = roomsList.find(room => room.id === selectedRoom?.id);
+            if (alreadySelectedRoom) {
+                const roomWithOwnerProps = addOwnerPropsToRoom(alreadySelectedRoom, user);
+                setSelectedRoom(roomWithOwnerProps);
+            }
+
         } catch (e) {
             console.log(":: GET ROOMS ERROR ::", e);
         }
@@ -41,6 +72,16 @@ export function RoomProvider({ children }) {
         }
     }
 
+    const addNewMessage = async (messagePayload) => {
+        try {
+            const messagesCollection = collection(firebaseDB, "messages");
+            await addDoc(messagesCollection, messagePayload)
+            // getRoomsList();
+        } catch (error) {
+            console.log(":: addNewMessage ERROR ::", error);
+        }
+    }
+
     const joinRoom = async (room) => {
         console.log(room, user)
         try {
@@ -49,7 +90,7 @@ export function RoomProvider({ children }) {
                 {
                     users: [
                         ...room.users,
-                        user.uid
+                        user.email
                     ]
                 }
             )
@@ -59,14 +100,16 @@ export function RoomProvider({ children }) {
         }
     }
 
-
+    console.log(":: SELECTED ROOM ::", { selectedRoom, rooms })
     return <RoomContext.Provider value={{
         rooms,
         selectedRoom,
         onRoomClick: setSelectedRoom,
         addNewRoom,
         joinRoom,
-        loading
+        addNewMessage,
+        loading,
+        messages
     }}>
         {children}
     </RoomContext.Provider>

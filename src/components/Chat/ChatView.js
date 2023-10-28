@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useRooms } from '../../contexts/RoomContext';
 import RoomInvitation from './RoomInvitation';
 import NoRoomSelected from './RoomSelection';
@@ -7,8 +7,9 @@ import ChatContainer from './ChatContainer';
 function ChatView() {
     const { selectedRoom, joinRoom } = useRooms();
     const { isOwner, isJoined } = selectedRoom || {};
+    console.log(":: ChatView ::", { selectedRoom })
 
-    if(isOwner || isJoined) {
+    if (isOwner || isJoined) {
         return <ChatContainer />
     }
 
