@@ -63,6 +63,7 @@ export class Signup extends Component {
             placeholder="Please provide password"
             className="w-full p-2 pl-4 border-b-2 border-slate-900 focus:outline-none"
           />
+          {error && <p style={{ color: 'red' }}> {error} </p>}
           <button className="w-full p-2 bg-slate-700 text-white rounded hover:bg-slate-900 mt-4 transition">
             Signup
           </button>
