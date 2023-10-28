@@ -3,6 +3,7 @@ import { useRooms } from '../../contexts/RoomContext';
 import { useAuth } from '../../contexts/AuthContext';
 import ChatView from './ChatView';
 import RoomList from './RoomList';
+import { addOwnerPropsToRoom } from '../../utils/roomUtils';
 
 var ChatRoom = () => {
   const { rooms = [], selectedRoom, onRoomClick } = useRooms();
@@ -11,12 +12,7 @@ var ChatRoom = () => {
   console.log(":: CHAT ROOM ::", { rooms, selectedRoom })
 
   const roomsWithUser = rooms.map(room => {
-    console.log("CHecking for Owner", room.owner, user.uid, room.owner === user.uid)
-    return {
-      ...room,
-      isOwner: room.owner === user.uid,
-      isJoined: (room.users || []).includes(user.email)
-    }
+    return addOwnerPropsToRoom(room, user)
   })
 
   var HandleLoading = () => <p className='text-2xl flex justify-center mt-56'>Loading....</p>
@@ -31,7 +27,7 @@ var ChatRoom = () => {
           isSelected={room.id === selectedRoom?.id}
         />)}
       </ul>}
-      
+
     </aside>
     <ChatView />
   </div>
