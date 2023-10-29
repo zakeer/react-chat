@@ -16,10 +16,11 @@ function ChatContainer() {
             message,
             room: selectedRoom.id,
             user: user.email,
-            date: (new Date()).getTime()
+            date: (new Date()).toLocaleTimeString()
         }
         console.log(":: onMessageSend ::", payload);
         addNewMessage(payload);
+        setMessage("");
     }
 
 
@@ -37,20 +38,13 @@ function ChatContainer() {
                 </div>
             </div>
         </header>
-        <div className='ui-chat-container-messages flex-1 p-2 flex flex-col'>
+        <div className='ui-chat-container-messages flex-1 p-2 flex flex-col overflow-x-auto'>
             {messages.map((message, idx) => <ChatMessage
                 key={idx}
                 {...message}
-                currentCurrent={message.user === user.email}
+                currentUser={message.user === user.email}
             />)}
-            {/* <pre>{JSON.stringify(messages, null, 2)}</pre> */}
-            {/* <ChatMessage user="Lakshmi" message="container-messages" date="12/08/2023" />
-            <ChatMessage user="Haseena" message="Send" date="13/08/2023" />
-            <ChatMessage user="test@gmail.com" message="Any updates" date="13/08/2023" currentCurrent />
-            <ChatMessage user="Muskan" message="bsolute top-full" date="14/08/2023" />
-            <ChatMessage user="Lakshmi" message="container-messages" date="12/08/2023" />
-            <ChatMessage user="Lakshmi" message="container-messages" date="12/08/2023" />
-            <ChatMessage user="test@gmail.com" message="Any updates" date="13/08/2023" currentCurrent /> */}
+            
         </div>
         <footer className='bg-slate-800 p-3 flex gap-2'>
             <input value={message} onChange={e => setMessage(e.target.value)} className='border rounded flex-1 py-1 pl-8 px-2 focus:outline-none' />

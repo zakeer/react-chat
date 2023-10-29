@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from 'react'
-import { collection, getDocs, addDoc, updateDoc, doc, query, where } from 'firebase/firestore'
+import { collection, getDocs, addDoc, updateDoc, doc, query, where, orderBy } from 'firebase/firestore'
 
 import { firebaseDB } from '../services/firebase';
 import { useAuth } from './AuthContext';
@@ -22,12 +22,13 @@ export function RoomProvider({ children }) {
         if (selectedRoom) {
             getRoomMessages();
         }
-    }, [selectedRoom]);
+    }, [selectedRoom, messages]);
 
     const getRoomMessages = async () => {
         const q = query(
             collection(firebaseDB, "messages"),
-            where("room", "==", selectedRoom.id)
+            where("room", "==", selectedRoom.id),
+            orderBy("date", "asc")
         );
         const querySnapshot = await getDocs(q);
         const newMessages = []
@@ -76,7 +77,6 @@ export function RoomProvider({ children }) {
         try {
             const messagesCollection = collection(firebaseDB, "messages");
             await addDoc(messagesCollection, messagePayload)
-            // getRoomsList();
         } catch (error) {
             console.log(":: addNewMessage ERROR ::", error);
         }

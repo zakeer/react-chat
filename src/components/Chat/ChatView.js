@@ -4,15 +4,15 @@ import RoomInvitation from './RoomInvitation';
 import NoRoomSelected from './RoomSelection';
 import ChatContainer from './ChatContainer';
 
+
 function ChatView() {
     const { selectedRoom, joinRoom } = useRooms();
     const { isOwner, isJoined } = selectedRoom || {};
     console.log(":: ChatView ::", { selectedRoom })
-
-    if (isOwner || isJoined) {
-        return <ChatContainer />
-    }
-
+   
+        if (isOwner || isJoined) {
+            return <ChatContainer />
+        }
 
     return <section className='flex-1 p-4'>
         {selectedRoom ? <RoomInvitation room={selectedRoom} onClick={() => joinRoom(selectedRoom)} /> : <NoRoomSelected />}
