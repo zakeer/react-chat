@@ -58,7 +58,7 @@ function ChatContainer() {
             <div ref={scroll}></div>
         </div>
         
-        <footer className='bg-slate-800 p-2 flex gap-2 relative bottom-0 '>
+        <footer className='bg-slate-800 p-2 flex gap-2'>
             <input value={message} onChange={e => setMessage(e.target.value)} className='border rounded flex-1 py-1 pl-8 px-2 focus:outline-none' />
             <Button type="button" className="w-24 hover:border" onClick={onMessageSend}>Send</Button>
         </footer>
