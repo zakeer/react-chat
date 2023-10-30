@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from 'react'
-import { collection, getDocs, addDoc, updateDoc, doc, query, where } from 'firebase/firestore'
+import { collection, getDocs, addDoc, updateDoc, doc, query, where,onSnapshot} from 'firebase/firestore'
 
 import { firebaseDB } from '../services/firebase';
 import { useAuth } from './AuthContext';
@@ -29,13 +29,17 @@ export function RoomProvider({ children }) {
             collection(firebaseDB, "messages"),
             where("room", "==", selectedRoom.id)
         );
-        const querySnapshot = await getDocs(q);
-        const newMessages = []
-        querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            newMessages.push(doc.data())
-        });
-        setMessages(newMessages);
+
+        // const querySnapshot = await getDocs(q);
+
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            const newMessages = [];
+            querySnapshot.forEach((doc) => {
+                newMessages.push(doc.data());
+            });
+            setMessages(newMessages);
+          });
+          return unsubscribe
     }
 
     const getRoomsList = async () => {
