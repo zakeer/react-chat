@@ -4,6 +4,7 @@ import React from "react";
 
 
 
+
 const RoomInvitation = React.memo(({ room, onClick }) => {
     var isAbleToJoin = !room.isOwner && !room.isJoined;
     
