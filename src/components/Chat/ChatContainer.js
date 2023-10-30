@@ -1,26 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Button from '../Button';
 import { useRooms } from '../../contexts/RoomContext';
 import { UserOutlined } from '@ant-design/icons';
 import ChatMessage from './ChatMessage';
 import { useAuth } from '../../contexts/AuthContext';
 
+
 function ChatContainer() {
     const { selectedRoom, addNewMessage, messages } = useRooms();
     const { user } = useAuth();
     const [message, setMessage] = useState("");
 
+
+    const scroll = useRef()
+
     const onMessageSend = () => {
         if (!message) return;
-        const payload = {
-            message,
-            room: selectedRoom.id,
-            user: user.email,
-            date: (new Date()).getTime()
-        }
+        if(message.trim() !== '') {
+            const payload = {
+                message,
+                room: selectedRoom.id,
+                user: user.email,
+                date: (new Date()).getTime()
+            }
+        
         console.log(":: onMessageSend ::", payload);
         addNewMessage(payload);
+        setMessage('');
+        }
     }
+
+    useEffect(() => {
+        scroll.current.scrollIntoView({ behavior: 'smooth' });
+    }, [messages]);
 
 
     if (!selectedRoom) return null;
@@ -37,25 +49,21 @@ function ChatContainer() {
                 </div>
             </div>
         </header>
-        <div className='ui-chat-container-messages flex-1 p-2 flex flex-col'>
-            {messages.map((message, idx) => <ChatMessage
+        <div className='ui-chat-container-messages flex-1 p-2 flex flex-col max-h-full overflow-y-auto'>
+            {messages.slice().sort((a, b) => a.date - b.date).map((message, idx) => <ChatMessage
                 key={idx}
                 {...message}
                 currentCurrent={message.user === user.email}
             />)}
-            {/* <pre>{JSON.stringify(messages, null, 2)}</pre> */}
-            {/* <ChatMessage user="Lakshmi" message="container-messages" date="12/08/2023" />
-            <ChatMessage user="Haseena" message="Send" date="13/08/2023" />
-            <ChatMessage user="test@gmail.com" message="Any updates" date="13/08/2023" currentCurrent />
-            <ChatMessage user="Muskan" message="bsolute top-full" date="14/08/2023" />
-            <ChatMessage user="Lakshmi" message="container-messages" date="12/08/2023" />
-            <ChatMessage user="Lakshmi" message="container-messages" date="12/08/2023" />
-            <ChatMessage user="test@gmail.com" message="Any updates" date="13/08/2023" currentCurrent /> */}
+            <div ref={scroll}></div>
         </div>
-        <footer className='bg-slate-800 p-3 flex gap-2'>
+        
+        <footer className='bg-slate-800 p-2 flex gap-2 relative bottom-0 '>
             <input value={message} onChange={e => setMessage(e.target.value)} className='border rounded flex-1 py-1 pl-8 px-2 focus:outline-none' />
             <Button type="button" className="w-24 hover:border" onClick={onMessageSend}>Send</Button>
         </footer>
+        
+        
     </section>
 }
 
